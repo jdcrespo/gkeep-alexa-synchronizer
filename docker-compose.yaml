@@ -5,12 +5,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      platform: linux/arm/v7
     container_name: gkeep-sync-container
     env_file:
       - .env
     volumes:
       - .:/app
-    command: ["python", "main.py"]
+    command: ["python", "-u", "app.py"]
     ports:
       - "5000:5000"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
